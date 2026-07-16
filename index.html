@@ -62,7 +62,7 @@
 <style>
 :root{
   --paper:#F9F7F2; --paper-mid:#EFEBE1; --ink:#141412; --ink-60:rgba(20,20,18,.62);
-  --accent:#007C4C; --accent-deep:#005937; --accent-tint:#F2F8F4; --accent-pale:#7FC8A6; --rule:rgba(20,20,18,.14);
+  --accent:#007C4C; --accent-hover:#00915A; --accent-deep:#005937; --accent-tint:#F2F8F4; --accent-pale:#7FC8A6; --rule:rgba(20,20,18,.14); --line:rgba(20,20,18,.14);
   --serif:Georgia,'Times New Roman',serif; --sans:system-ui,-apple-system,'Segoe UI',sans-serif;
   --shadow:0 1px 2px rgba(20,20,18,.04),0 8px 24px rgba(20,20,18,.06);
 }
@@ -212,9 +212,15 @@ footer{border-top:1px solid var(--rule);padding:56px 0 40px;font-size:14px;color
 
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:1000;width:0}
+header{top:3px}
+.demo-phone{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);transition:border-color .15s,background .15s;white-space:nowrap}.demo-phone:hover{border-color:var(--accent);background:rgba(0,0,0,.02)}.demo-phone svg{width:15px;height:15px;stroke:#007C4C;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stat-animated{font-variant-numeric:tabular-nums}
+.table-cards{display:none}@media(max-width:719px){.tablewrap{display:none}.table-cards{display:flex;flex-direction:column;gap:14px}}.tc-card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:20px;box-shadow:var(--shadow)}.tc-card.hl{background:var(--accent-tint)}.tc-card .tc-row{display:flex;justify-content:space-between;padding:10px 0;font-size:14.5px}.tc-card .tc-row:not(:last-child){border-bottom:1px solid var(--rule)}.tc-card .tc-label{color:var(--ink-60);font-size:13px;min-width:100px}.tc-card .tc-val{font-weight:600;text-align:right}.tc-card strong{font-family:var(--serif);font-size:16px;display:block;margin-bottom:2px}.float-cta{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:14px;z-index:90;transform:translateY(100%);transition:transform .3s cubic-bezier(.16,1,.3,1);box-shadow:0 -4px 20px rgba(0,0,0,.08);flex-wrap:wrap}.float-cta.visible{transform:translateY(0)}.float-cta .fcta-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px;transition:transform .15s,box-shadow .15s;white-space:nowrap}.float-cta .fcta-primary:hover{transform:translateY(-1px);box-shadow:0 12px 40px rgba(20,20,18,.12)}.float-cta .fcta-phone{display:inline-flex;align-items:center;gap:7px;color:var(--ink);text-decoration:none;font-weight:600;font-size:14.5px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);transition:border-color .15s}.float-cta .fcta-phone:hover{border-color:var(--accent)}.float-cta .fcta-phone svg{width:16px;height:16px;stroke:#007C4C;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}@media(max-width:480px){.float-cta{padding:10px 14px;gap:10px}.float-cta .fcta-primary{padding:10px 18px;font-size:14px}.float-cta .fcta-phone{font-size:13px;padding:8px 14px}}.back-to-top{position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(20,20,18,.12);z-index:80;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s;pointer-events:none}.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}.back-to-top:hover{transform:translateY(-2px)}.back-to-top svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round}@media print{header,.float-cta,.back-to-top,.progress-bar,.hero-ctas,.navcta,.btn,.cta,.ctaband,.cta-band,.cta-inner,.demo-phone,[class*=nav-cta]{display:none !important}body{font-size:13px;line-height:1.5;color:#000;background:#fff}h1{font-size:24px}h2{font-size:20px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:8px}a{color:#000;text-decoration:underline}section,section.band,section.block{padding:20px 0 !important;page-break-inside:avoid}.wrap{max-width:100%;padding:0}footer{border-top:1px solid #ccc;padding:20px 0;font-size:11px;color:#666}.reveal{opacity:1 !important;transform:none !important}}
 </style>
 </head>
 <body>
+<div class="progress-bar" aria-hidden="true"></div>
 
 <header>
   <div class="wrap">
@@ -247,6 +253,7 @@ footer{border-top:1px solid var(--rule);padding:56px 0 40px;font-size:14px;color
 
       <div class="herobtns">
         <a class="btn" href="https://menodi.se/?utm_source=telefonpassningpris&utm_medium=satellite&utm_campaign=hero" rel="sponsored">Testa gratis demo</a>
+        <a class="demo-phone" href="tel:+46844680844"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>Ring demon</a>
         <a class="btn secondary" href="#jamforelse">Se prisjämförelsen</a>
       </div>
     </div>
@@ -306,6 +313,36 @@ footer{border-top:1px solid var(--rule);padding:56px 0 40px;font-size:14px;color
       </tr>
     </table>
   </div>
+  <div class="table-cards">
+    <div class="tc-card">
+      <div><strong>Svarsservice</strong><span style="color:var(--ink-60);font-size:13px;display:block">Mänskliga telefonister svarar i ditt företagsnamn</span></div>
+      <div class="tc-row"><span class="tc-label">Kostnad</span><span class="tc-val price">abonnemang + ca 15–35 kr/samtal</span></div>
+      <div class="tc-row"><span class="tc-label">Prismodell</span><span class="tc-val">Fast avgift plus rörlig samtalskostnad</span></div>
+      <div class="tc-row"><span class="tc-label">Öppettider</span><span class="tc-val">Oftast kontorstid, dyrare tillval för kväll/helg</span></div>
+      <div class="tc-row"><span class="tc-label">Passar</span><span class="tc-val">Företag med få men komplexa samtal</span></div>
+    </div>
+    <div class="tc-card">
+      <div><strong>Callcenter</strong><span style="color:var(--ink-60);font-size:13px;display:block">Outsourcad kundtjänst, ofta med volymkrav</span></div>
+      <div class="tc-row"><span class="tc-label">Kostnad</span><span class="tc-val price">offertbaserat, varierar</span></div>
+      <div class="tc-row"><span class="tc-label">Prismodell</span><span class="tc-val">Offert, ofta per samtal eller per timme</span></div>
+      <div class="tc-row"><span class="tc-label">Öppettider</span><span class="tc-val">Enligt avtal</span></div>
+      <div class="tc-row"><span class="tc-label">Passar</span><span class="tc-val">Större bolag med hög samtalsvolym</span></div>
+    </div>
+    <div class="tc-card">
+      <div><strong>Egen receptionist</strong><span style="color:var(--ink-60);font-size:13px;display:block">Anställd på plats</span></div>
+      <div class="tc-row"><span class="tc-label">Kostnad</span><span class="tc-val price">ca 40&nbsp;000–50&nbsp;000 kr/mån</span></div>
+      <div class="tc-row"><span class="tc-label">Prismodell</span><span class="tc-val">Lön + arbetsgivaravgifter + semester &amp; frånvaro</span></div>
+      <div class="tc-row"><span class="tc-label">Öppettider</span><span class="tc-val">Kontorstid</span></div>
+      <div class="tc-row"><span class="tc-label">Passar</span><span class="tc-val">Företag som även behöver reception på plats</span></div>
+    </div>
+    <div class="tc-card hl">
+      <div><strong>AI-receptionist</strong><span class="tag">Nytt 2026</span><span style="color:var(--ink-60);font-size:13px;display:block">AI svarar, bokar och tar meddelanden — t.ex. <a href="https://menodi.se/?utm_source=telefonpassningpris&utm_medium=satellite&utm_campaign=table" rel="sponsored">Menodi</a></span></div>
+      <div class="tc-row"><span class="tc-label">Kostnad</span><span class="tc-val price">från 795 kr/mån</span></div>
+      <div class="tc-row"><span class="tc-label">Prismodell</span><span class="tc-val">Fast månadskostnad, ingen kostnad per samtal</span></div>
+      <div class="tc-row"><span class="tc-label">Öppettider</span><span class="tc-val">Dygnet runt, alla dagar</span></div>
+      <div class="tc-row"><span class="tc-label">Passar</span><span class="tc-val">Småföretag &amp; hantverkare som missar samtal på jobbet</span></div>
+    </div>
+  </div>
   <p class="note">Prisnivåer sammanställda juli 2026 från leverantörernas publika prisinformation och branschpraxis. Enskilda leverantörers priser varierar.</p>
 </section>
 
@@ -315,22 +352,22 @@ footer{border-top:1px solid var(--rule);padding:56px 0 40px;font-size:14px;color
   <div class="statsband reveal">
     <div class="statsgrid">
       <div class="stat verified">
-        <div class="num">62%</div>
+        <div class="num stat-animated" data-count="62%">62%</div>
         <div class="lbl">Av samtal till småföretag besvaras aldrig av en människa</div>
         <div class="src">Källa: 411 Locals-studien (85 företag, 58 branscher, 30 dagar)</div>
       </div>
       <div class="stat verified">
-        <div class="num">52%</div>
+        <div class="num stat-animated" data-count="52%">52%</div>
         <div class="lbl">Av salongsbokningar görs kl 17–09, utanför ordinarie öppettider</div>
         <div class="src">Källa: Book Salon-studien 2021 (1 000+ salonger)</div>
       </div>
       <div class="stat verified">
-        <div class="num">56%</div>
+        <div class="num stat-animated" data-count="56%">56%</div>
         <div class="lbl">Av bilhandlares leads kommer efter stängningstid (USA)</div>
         <div class="src">Källa: NADA via Better Car People 2024</div>
       </div>
       <div class="stat verified">
-        <div class="num">31%</div>
+        <div class="num stat-animated" data-count="31%">31%</div>
         <div class="lbl">Av tandläkartider uteblir</div>
         <div class="src">Källa: NIH/PMC 2023 (14 066 journaler)</div>
       </div>
@@ -433,6 +470,12 @@ footer{border-top:1px solid var(--rule);padding:56px 0 40px;font-size:14px;color
 
 </div>
 
+  <div class="float-cta" aria-hidden="true">
+    <a class="fcta-primary" href="https://menodi.se/?utm_source=telefonpassningpris&utm_medium=satellite&utm_campaign=sticky" rel="sponsored">Prova gratis demo</a>
+    <a class="fcta-phone" href="tel:+46844680844"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>Ring demon</a>
+  </div>
+  <button class="back-to-top" aria-label="Till toppen"><svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg></button>
+
 <footer>
   <div class="wrap">
     <div class="footgrid">
@@ -463,19 +506,27 @@ footer{border-top:1px solid var(--rule);padding:56px 0 40px;font-size:14px;color
 </footer>
 
 <script>
-const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+(function(){
+/* ---- reveal on scroll ---- */
+var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add(e.classList.contains('confirm')?'in':(e.classList.contains('bubble')?'show':'in'))});}
+else{var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.classList.contains('confirm')?'in':(e.target.classList.contains('bubble')?'show':'in'));io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});els.forEach(function(e){io.observe(e)});}
 
-const burgerBtn = document.getElementById('burgerBtn');
-const navlinks = document.getElementById('navlinks');
-burgerBtn.addEventListener('click', () => {
-  const open = navlinks.classList.toggle('open');
-  burgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
-navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  navlinks.classList.remove('open');
-  burgerBtn.setAttribute('aria-expanded', 'false');
-}));
+/* ---- progress bar ---- */
+var bar=document.querySelector('.progress-bar');if(bar){window.addEventListener('scroll',function(){var h=document.documentElement,pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;bar.style.width=Math.min(100,Math.max(0,pct))+'%'},{passive:true})}
+
+/* ---- floating CTA ---- */
+var fcta=document.querySelector('.float-cta');if(fcta){var last=0,heroH=0,hero=document.querySelector('.hero');if(hero)heroH=hero.offsetHeight;window.addEventListener('scroll',function(){var y=window.scrollY;if(y>heroH*.8&&y>last)fcta.classList.add('visible');else if(y<heroH*.4)fcta.classList.remove('visible');last=y},{passive:true})}
+
+/* ---- back-to-top ---- */
+var btt=document.querySelector('.back-to-top');if(btt){window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})}
+
+/* ---- count-up stats ---- */
+var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;var stats=[].slice.call(document.querySelectorAll('.stat-animated'));if(stats.length){function ease(t){return 1-Math.pow(1-t,3)}function countUp(el,target,dur){var t0=performance.now(),suffix='';if(typeof target==='string'){var m=target.match(/^([\d\s]+)/);if(m){target=parseInt(m[1].replace(/\s/g,''),10);suffix=el.dataset.count.replace(/^[\d\s]+/,'')}else{el.textContent=target;return}}(function tick(now){var p=Math.min(1,(now-t0)/dur);el.textContent=Math.round(ease(p)*target)+suffix;if(p<1)requestAnimationFrame(tick)})(t0)}if(reduce){stats.forEach(function(s){s.textContent=s.dataset.count||s.textContent})}else{var sio=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){countUp(e.target,+e.target.dataset.count.replace(/[^\d]/g,''),1400);sio.unobserve(e.target)}})},{threshold:.5});stats.forEach(function(s){sio.observe(s)})}}
+
+/* ---- hamburger ---- */
+var t=document.getElementById('burgerBtn'),m=document.getElementById('navlinks');if(t&&m){t.addEventListener('click',function(){var o=m.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false')});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');t.setAttribute('aria-expanded','false')})})}
+})();
 </script>
 </body>
 </html>
